@@ -19,19 +19,21 @@ Sistem Reservasi Ruang Diskusi Perpustakaan UPNVJ adalah aplikasi manajemen pemi
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Fitur & Pembaruan Terbaru (Update)
 
-- 🏠 **Dashboard Utama** — Menampilkan ringkasan daftar ruangan dan riwayat pemesanan dalam satu layar
-- 📋 **Daftar Ruangan** — Melihat semua ruang diskusi beserta status ketersediaan real-time (Tersedia / Sedang Digunakan)
-- 📝 **Booking Ruangan** — Form pemesanan ruangan dengan validasi:
-  - Durasi maksimal **2 jam** per pemesanan
-  - Deteksi **bentrok jadwal** otomatis
-  - Registrasi mahasiswa otomatis berdasarkan NIM
-- 🕐 **Status Real-Time** — Status pemesanan dihitung otomatis berdasarkan waktu nyata: `Akan Datang`, `Sedang Berjalan`, atau `Selesai`
-- ✏️ **Edit Riwayat Pemesanan** — Mengubah data booking yang sudah ada dengan validasi yang sama
-- 🗑️ **Hapus Riwayat Pemesanan** — Menghapus data booking dengan konfirmasi dialog
-- 📂 **Navigasi Tab** — Sidebar navigasi dengan tiga tab: Dashboard, Daftar Ruangan, dan Riwayat Pemesanan
-- 📭 **Empty State** — Tampilan informatif "Belum ada yang memesan ruangan" saat data kosong
+- 🎨 **Modern & Minimalist UI** — Tampilan antarmuka yang bersih tanpa batas pinggiran bawaan sistem (*undecorated*), dilengkapi sudut membulat elegan (*rounded corners*) dan *padding* presisi layaknya desain Figma modern.
+- 🏠 **Dashboard Utama** — Menampilkan ringkasan daftar ruangan dan riwayat pemesanan dalam satu layar.
+- 📋 **Daftar Ruangan** — Melihat semua ruang diskusi beserta status ketersediaan real-time (Tersedia / Sedang Digunakan).
+- 📝 **Booking Ruangan Cerdas** — Form pemesanan ruangan modern dengan fungsionalitas:
+  - Durasi maksimal **2 jam** per pemesanan.
+  - Perlindungan format ketat (*MaskFormatter*) untuk input **Tanggal (YYYY-MM-DD)**.
+  - Deteksi **bentrok jadwal** otomatis.
+  - Registrasi mahasiswa otomatis berdasarkan NIM.
+- 🕐 **Status Real-Time** — Status pemesanan dihitung otomatis berdasarkan waktu nyata: `Dibooking`, `Sedang Digunakan`, atau `Selesai`.
+- ✏️ **Edit & Hapus (CRUD)** — Mengubah atau membatalkan data booking yang sudah ada dengan tombol aksi khusus (Pensil & Tempat Sampah).
+- 🚀 **Auto-Navigasi** — Setelah pemesanan/pengeditan sukses, sistem akan langsung melompat ke tab "Riwayat Pemesanan" secara otomatis untuk melihat hasilnya.
+- 📂 **Navigasi Tab Interaktif** — Teks menu akan merespons *(Bold & Green)* saat halaman sedang aktif.
+- 📭 **Empty State** — Tampilan informatif "Belum ada yang memesan ruangan" saat data tabel kosong.
 
 ---
 
@@ -48,7 +50,7 @@ Sistem Reservasi Ruang Diskusi Perpustakaan UPNVJ adalah aplikasi manajemen pemi
 
 ### Struktur Paket
 
-```
+```text
 src/
 ├── model/
 │   ├── RuangDiskusi.java         ← Abstract class (parent)
@@ -63,7 +65,7 @@ src/
 │   └── RuangDiskusiController.java   ← Logika bisnis: ambil data ruangan
 ├── view/
 │   ├── MainDashboard.java   ← Jendela utama & navigasi
-│   ├── BookingForm.java     ← Form input pemesanan & edit
+│   ├── BookingForm.java     ← Form input pemesanan & edit UI modern
 │   ├── ButtonRenderer.java  ← Renderer tombol Aksi di tabel
 │   └── ButtonEditor.java    ← Editor tombol Aksi (klik handler)
 └── util/
