@@ -17,18 +17,32 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor 
     public ButtonEditor(MainDashboard dashboard) {
         this.dashboard = dashboard;
         panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
-        btnEdit = new JButton("Edit");
-        btnDelete = new JButton("Hapus");
+        btnEdit = new JButton();
+        btnDelete = new JButton();
         
-        btnEdit.setBackground(new Color(50, 150, 250));
-        btnEdit.setForeground(Color.WHITE);
-        btnEdit.setOpaque(true);
+        try {
+            ImageIcon iconEdit = new ImageIcon("src/assets/icon_edit.png");
+            Image imgEdit = iconEdit.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btnEdit.setIcon(new ImageIcon(imgEdit));
+            
+            ImageIcon iconDelete = new ImageIcon("src/assets/icon_delete.png");
+            Image imgDelete = iconDelete.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btnDelete.setIcon(new ImageIcon(imgDelete));
+        } catch (Exception e) {}
+
+        btnEdit.setPreferredSize(new Dimension(32, 32));
+        btnEdit.setBackground(Color.WHITE);
+        btnEdit.setContentAreaFilled(false);
         btnEdit.setBorderPainted(false);
+        btnEdit.setFocusPainted(false);
+        btnEdit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
-        btnDelete.setBackground(new Color(250, 50, 50));
-        btnDelete.setForeground(Color.WHITE);
-        btnDelete.setOpaque(true);
+        btnDelete.setPreferredSize(new Dimension(32, 32));
+        btnDelete.setBackground(Color.WHITE);
+        btnDelete.setContentAreaFilled(false);
         btnDelete.setBorderPainted(false);
+        btnDelete.setFocusPainted(false);
+        btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         btnEdit.addActionListener(new ActionListener() {
             @Override

@@ -8,18 +8,32 @@ public class ButtonRenderer extends JPanel implements TableCellRenderer {
     public ButtonRenderer() {
         setOpaque(true);
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
-        JButton btnEdit = new JButton("Edit");
-        JButton btnDelete = new JButton("Hapus");
+        JButton btnEdit = new JButton();
+        JButton btnDelete = new JButton();
         
-        btnEdit.setBackground(new Color(50, 150, 250));
-        btnEdit.setForeground(Color.WHITE);
-        btnEdit.setOpaque(true);
+        try {
+            ImageIcon iconEdit = new ImageIcon("src/assets/icon_edit.png");
+            Image imgEdit = iconEdit.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btnEdit.setIcon(new ImageIcon(imgEdit));
+            
+            ImageIcon iconDelete = new ImageIcon("src/assets/icon_delete.png");
+            Image imgDelete = iconDelete.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btnDelete.setIcon(new ImageIcon(imgDelete));
+        } catch (Exception e) {}
+
+        btnEdit.setPreferredSize(new Dimension(32, 32));
+        btnEdit.setBackground(Color.WHITE);
+        btnEdit.setContentAreaFilled(false);
         btnEdit.setBorderPainted(false);
+        btnEdit.setFocusPainted(false);
+        btnEdit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
-        btnDelete.setBackground(new Color(250, 50, 50));
-        btnDelete.setForeground(Color.WHITE);
-        btnDelete.setOpaque(true);
+        btnDelete.setPreferredSize(new Dimension(32, 32));
+        btnDelete.setBackground(Color.WHITE);
+        btnDelete.setContentAreaFilled(false);
         btnDelete.setBorderPainted(false);
+        btnDelete.setFocusPainted(false);
+        btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         add(btnEdit);
         add(btnDelete);

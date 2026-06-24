@@ -86,7 +86,18 @@ public class BookingController {
             return "Error database: " + e.getMessage();
         }
     }
+    public void deleteOldBookings() {
+        String query = "DELETE FROM booking WHERE tanggal_booking < CURRENT_DATE()";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public java.util.List<model.BookingRiwayat> getAllBookingHistory() {
+        deleteOldBookings();
         java.util.List<model.BookingRiwayat> listRiwayat = new java.util.ArrayList<>();
         String query = "SELECT b.id_booking, b.tanggal_booking, b.jam_mulai, b.jam_selesai, " +
                        "r.id_ruang, r.nama_ruang, m.nim, m.nama as nama_mahasiswa " +
@@ -110,14 +121,14 @@ public class BookingController {
                 String namaMahasiswa = rs.getString("nama_mahasiswa");
 
                 // Menentukan Status
-                String status = "Akan Datang";
+                String status = "Dibooking";
                 LocalDate today = LocalDate.now();
                 LocalDate bookingDate = tanggalBooking.toLocalDate();
 
                 if (bookingDate.isBefore(today)) {
                     status = "Selesai";
                 } else if (bookingDate.isAfter(today)) {
-                    status = "Akan Datang";
+                    status = "Dibooking";
                 } else {
                     // Tanggal hari ini
                     LocalTime timeNow = LocalTime.now();
@@ -127,9 +138,9 @@ public class BookingController {
                     if (timeNow.isAfter(timeSelesai)) {
                         status = "Selesai";
                     } else if (timeNow.isBefore(timeMulai)) {
-                        status = "Akan Datang";
+                        status = "Dibooking";
                     } else {
-                        status = "Sedang Berjalan";
+                        status = "Sedang Digunakan";
                     }
                 }
 
